@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/23/index.html" class="older">&#8592; Prev</a><a href="../../page/25/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 24 : Les branches distantes</h1></div><div class="post-body markdown"><h2><a name="le-dpt-distant-origin" class="anchor" href="#le-dpt-distant-origin"><span class="header-link"></span></a>Le dépôt distant origin</h2>
+<p>La commande <a href="http://git-scm.com/docs/git-remote">git remote</a> permet de
+gérer les dépôts distants.</p>
+<p>Nous aller commencer par lister nos dépôts distants et afficher
+des information sur le dépôt <code>origin</code>.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">cd</span> <span class="o">~</span><span class="err">/cloned_hello</span>
+<span class="nx">git</span> <span class="nx">remote</span> <span class="o">-</span><span class="nx">v</span>
+<span class="nx">git</span> <span class="nx">remote</span> <span class="nx">show</span> <span class="nx">origin</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">cd</span> <span class="o">~</span><span class="err">/cloned_hello</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">remote</span>
+<span class="nx">origin</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">remote</span> <span class="nx">show</span> <span class="nx">origin</span>
+<span class="o">*</span> <span class="nx">remote</span> <span class="nx">origin</span>
+  <span class="nx">Fetch</span> <span class="nx">URL</span><span class="o">:</span> <span class="err">/c/Users/Moi/hello</span>
+  <span class="nx">Push</span>  <span class="nx">URL</span><span class="o">:</span> <span class="err">/c/Users/Moi/hello</span>
+  <span class="nx">HEAD</span> <span class="nx">branch</span><span class="o">:</span> <span class="nx">master</span>
+  <span class="nx">Remote</span> <span class="nx">branches</span><span class="o">:</span>
+    <span class="nx">master</span> <span class="nx">tracked</span>
+  <span class="nx">Local</span> <span class="nx">branch</span> <span class="nx">configured</span> <span class="k">for</span> <span class="s1">&#39;git pull&#39;</span><span class="o">:</span>
+    <span class="nx">master</span> <span class="nx">merges</span> <span class="kd">with</span> <span class="nx">remote</span> <span class="nx">master</span>
+  <span class="nx">Local</span> <span class="nx">ref</span> <span class="nx">configured</span> <span class="k">for</span> <span class="s1">&#39;git push&#39;</span><span class="o">:</span>
+    <span class="nx">master</span> <span class="nx">pushes</span> <span class="nx">to</span> <span class="nx">master</span> <span class="p">(</span><span class="nx">up</span> <span class="nx">to</span> <span class="nx">date</span><span class="p">)</span>
+</pre></div>
+</code></pre>
+<p>Le nom <code>origin</code> est le nom donné par défaut au dépôt distant de
+référence.</p>
+<h2><a name="les-branches-distantes" class="anchor" href="#les-branches-distantes"><span class="header-link"></span></a>Les branches distantes</h2>
+<p>Les branches distantes désignent les branches d&#39;un dépôt distant. Par
+défaut la commande <a href="http://git-scm.com/docs/git-branch">git branch</a> ne
+liste pas les branches distantes. Il faut utiliser l&#39;option <code>-r</code> pour
+les lister ou l&#39;option <code>-a</code> pour lister toutes les branches.</p>
+<p>Nous souhaitons lister toutes les branches de notre dépôt clone.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">cd</span> <span class="o">~</span><span class="err">/cloned_hello</span>
+<span class="nx">git</span> <span class="nx">branch</span>
+<span class="nx">git</span> <span class="nx">branch</span> <span class="o">-</span><span class="nx">a</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">cd</span> <span class="o">~</span><span class="err">/cloned_hello</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">branch</span>
+<span class="o">*</span> <span class="nx">master</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">branch</span> <span class="o">-</span><span class="nx">a</span>
+<span class="o">*</span> <span class="nx">master</span>
+  <span class="nx">remotes</span><span class="o">/</span><span class="nx">origin</span><span class="o">/</span><span class="nx">HEAD</span> <span class="o">-&gt;</span> <span class="nx">origin</span><span class="o">/</span><span class="nx">master</span>
+  <span class="nx">remotes</span><span class="o">/</span><span class="nx">origin</span><span class="o">/</span><span class="nx">master</span>
+</pre></div>
+</code></pre>
+<p>Git fourni des commandes pour pouvoir récupérer des modifications sur
+les branches distantes et pour envoyer des modifications réaliser sur
+les branches locales. Ce sont les opérations de <em>fetch</em> et de <em>pull</em>.</p>
+<p>Les branches distantes ne sont jamais modifiées manuellement. Elles le
+sont seulement lorsqu&#39;elles sont synchronisées avec le dépôt distant
+associé.</p>
+<p>Une branche de suivi est une branche locale dont l&#39;avancement est
+synchronisée avec une branche distante.</p>
+</div><div class="pagination group"><a href="../../page/23/index.html" class="older">&#8592; Prev</a><a href="../../page/25/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

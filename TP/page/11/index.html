@@ -1,0 +1,89 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/10/index.html" class="older">&#8592; Prev</a><a href="../../page/12/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 11 : Tagger des versions</h1></div><div class="post-body markdown"><h2><a name="crer-un-premier-tag" class="anchor" href="#crer-un-premier-tag"><span class="header-link"></span></a>Créer un premier tag</h2>
+<p>Un tag est un marque page vers un commit donné. C&#39;est un moyen facile
+de référencer l&#39;état du dépôt à un moment dans le temps.</p>
+<p>Nous allons définir la version courante du dépôt comme étant la
+version 1 de notre projet.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">tag</span> <span class="nx">v1</span>
+<span class="nx">git</span> <span class="nx">tag</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">tag</span> <span class="nx">v1</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">tag</span>
+<span class="nx">v1</span>
+</pre></div>
+</code></pre>
+<h2><a name="utiliser-un-tag-comme-rfrence" class="anchor" href="#utiliser-un-tag-comme-rfrence"><span class="header-link"></span></a>Utiliser un tag comme référence</h2>
+<p>Le commit correspondant à la version courante du dépôt (le plus récent
+dans l&#39;historique) peut maintenant être référencé par son empreinte
+ <code>8b88904</code> et par le tag <code>v1</code>.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">hist</span>
+<span class="nx">git</span> <span class="nx">show</span> <span class="nx">v1</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">hist</span>
+<span class="o">*</span> <span class="mi">8</span><span class="nx">b88904</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Cr</span><span class="err">é</span><span class="nx">ation</span> <span class="nx">carnet</span> <span class="nx">d</span><span class="s1">&#39;adresses développeurs (HEAD, master) [Steven Enten]</span>
+<span class="s1">* 5a67ff5 2015-03-21 | Ajout fonctionnalité personnification [Steven Enten]</span>
+<span class="s1">* 421a6a8 2015-03-21 | Initialisation du projet [Steven Enten]</span>
+
+<span class="s1">$ git show v1</span>
+<span class="s1">commit 8b8890419d353fd8d53d012f3c57842f3ac1192d</span>
+<span class="s1">Author: Steven Enten &lt;steven@enten.fr&gt;</span>
+<span class="s1">Date:   Sat Mar 21 17:29:58 2015 +0100</span>
+
+<span class="s1">    Création carnet d&#39;</span><span class="nx">adresses</span> <span class="nx">d</span><span class="err">é</span><span class="nx">veloppeurs</span>
+
+<span class="nx">diff</span> <span class="o">--</span><span class="nx">git</span> <span class="nx">a</span><span class="o">/</span><span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span> <span class="nx">b</span><span class="o">/</span><span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+<span class="k">new</span> <span class="nx">file</span> <span class="nx">mode</span> <span class="mi">100644</span>
+<span class="nx">index</span> <span class="mi">0000000</span><span class="p">..</span><span class="mi">5</span><span class="nx">be7c61</span>
+<span class="o">---</span> <span class="err">/dev/null</span>
+<span class="o">+++</span> <span class="nx">b</span><span class="o">/</span><span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+<span class="err">@@</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span> <span class="err">@@</span>
+<span class="o">+</span><span class="nx">John</span> <span class="nx">Doe</span> <span class="o">&lt;</span><span class="nx">jd</span><span class="err">@</span><span class="nx">internet</span><span class="p">.</span><span class="nx">com</span><span class="o">&gt;</span>
+<span class="o">+</span><span class="nx">Bruce</span> <span class="nx">Wayne</span> <span class="o">&lt;</span><span class="nx">batman</span><span class="err">@</span><span class="nx">wayne</span><span class="o">-</span><span class="nx">corp</span><span class="p">.</span><span class="nx">com</span>
+</pre></div>
+</code></pre>
+<p>Nous allons maintenant tagger le premier commit <code>421a6a8</code> comme étant
+la version <code>v0</code>.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">tag</span> <span class="nx">v0</span> <span class="mi">421</span><span class="nx">a6a8</span>
+<span class="nx">git</span> <span class="nx">tag</span>
+<span class="nx">git</span> <span class="nx">show</span> <span class="nx">v0</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">tag</span> <span class="nx">v0</span> <span class="mi">421</span><span class="nx">a6a8</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">tag</span>
+<span class="nx">v0</span>
+<span class="nx">v1</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">show</span> <span class="nx">v0</span>
+<span class="nx">commit</span> <span class="mi">421</span><span class="nx">a6a8fdcb05445150ceffe92a13d437776cf1f</span>
+<span class="nx">Author</span><span class="o">:</span> <span class="nx">Steven</span> <span class="nx">Enten</span> <span class="o">&lt;</span><span class="nx">steven</span><span class="err">@</span><span class="nx">enten</span><span class="p">.</span><span class="nx">fr</span><span class="o">&gt;</span>
+<span class="nb">Date</span><span class="o">:</span>   <span class="nx">Sat</span> <span class="nx">Mar</span> <span class="mi">21</span> <span class="mi">15</span><span class="o">:</span><span class="mi">15</span><span class="o">:</span><span class="mi">02</span> <span class="mi">2015</span> <span class="o">+</span><span class="mi">0100</span>
+
+    <span class="nx">Initialisation</span> <span class="nx">du</span> <span class="nx">projet</span>
+
+<span class="nx">diff</span> <span class="o">--</span><span class="nx">git</span> <span class="nx">a</span><span class="o">/</span><span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span> <span class="nx">b</span><span class="o">/</span><span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+<span class="k">new</span> <span class="nx">file</span> <span class="nx">mode</span> <span class="mi">100755</span>
+<span class="nx">index</span> <span class="mi">0000000</span><span class="p">..</span><span class="mi">94</span><span class="nx">d1f4b</span>
+<span class="o">---</span> <span class="err">/dev/null</span>
+<span class="o">+++</span> <span class="nx">b</span><span class="o">/</span><span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+<span class="err">@@</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span> <span class="err">@@</span>
+<span class="o">+</span><span class="err">#</span><span class="o">!</span><span class="err">/bin/bash</span>
+<span class="o">+</span><span class="nx">echo</span> <span class="s2">&quot;Hello, World&quot;</span>
+<span class="o">+</span><span class="nx">exit</span> <span class="mi">0</span>
+</pre></div>
+</code></pre>
+<p>Il est maintenant possible de restaurer des fichiers à un état
+dans le temps référencé par un nom (plutôt qu&#39;une empreinte).</p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">v0</span> <span class="o">--</span> <span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+<span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">v1</span> <span class="o">--</span> <span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+</pre></div>
+</code></pre>
+</div><div class="pagination group"><a href="../../page/10/index.html" class="older">&#8592; Prev</a><a href="../../page/12/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

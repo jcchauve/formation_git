@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/1/index.html" class="older">&#8592; Prev</a><a href="../../page/3/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 2 : Configuration</h1></div><div class="post-body markdown"><h2><a name="configuration-minimum" class="anchor" href="#configuration-minimum"><span class="header-link"></span></a>Configuration minimum</h2>
+<p>La configuration minimum de Git consiste en une seul point : renseigner
+son identité en tant que développeur (nom d&#39;utilisateur et adresse
+email). Sans quoi nous ne pourrons pas réaliser d&#39;opérations de
+<em>commits</em> (Git bloquera la commande).</p>
+<p>Pour cela nous pouvons utiliser la commande
+<code>git config --global option.name value</code> qui permet de définir une option
+au niveau utilisateur (utiliser <code>--system</code> pour définir une option au
+niveau système).</p>
+<p>L&#39;identité utilisateur se configure à travers les options <code>user.name</code> et
+<code>user.email</code>. Si la commande <code>git config</code> est appelée sans paramètre
+<code>value</code>, alors Git ne fait qu&#39;afficher la valeur de <code>option.name</code>.</p>
+<p><strong><em>Exécuter</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">config</span> <span class="o">--</span><span class="nx">global</span> <span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="s2">&quot;Votre nom&quot;</span>
+<span class="nx">git</span> <span class="nx">config</span> <span class="o">--</span><span class="nx">global</span> <span class="nx">user</span><span class="p">.</span><span class="nx">email</span> <span class="s2">&quot;votre_email@votredomaine.com&quot;</span>
+</pre></div>
+</code></pre>
+<h2><a name="configuration-additionnelle" class="anchor" href="#configuration-additionnelle"><span class="header-link"></span></a>Configuration additionnelle</h2>
+<p>Git dispose d&#39;un nombre important d&#39;options à adapter selon les besoins.
+Nous allons ajuster quelques unes de celles-ci pour améliorer
+l&#39;érgonomie de Git.</p>
+<h3><a name="coloration" class="anchor" href="#coloration"><span class="header-link"></span></a>Coloration</h3>
+<p>Tout d&#39;abord nous allons ajuster l&#39;option <code>color.ui</code> à <code>auto</code> au niveau
+système pour que tous les utilisateurs profitent de la coloration dans
+le shell de certains affichages de Git.</p>
+<p><strong><em>Exécuter</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">config</span> <span class="o">--</span><span class="nx">global</span> <span class="nx">color</span><span class="p">.</span><span class="nx">ui</span> <span class="nx">auto</span>
+</pre></div>
+</code></pre>
+<h3><a name="caractres-de-fin-de-lignes" class="anchor" href="#caractres-de-fin-de-lignes"><span class="header-link"></span></a>Caractères de fin de lignes</h3>
+<p>Nous devons régler deux options relatives à la gestion des
+caractères de fin de lignes : <code>core.autocrlf</code> et <code>core.safecrlf</code>.</p>
+<p>Nous allons définir la valeur <code>true</code> pour l&#39;option <code>core.safecrlf</code> :
+ainsi Git n&#39;apportera aucune modification de fin de lignes à des
+fichiers binaire.</p>
+<p>Pour l&#39;option <code>core.autocrlf</code>, sa valeur dépend du système sur lequel
+Git est utilisé.</p>
+<ul>
+<li><strong>Linux</strong> : passer la valeur <code>input</code> pour réaliser d&#39;éventuels
+ conversions <code>CRLF--&gt;LF</code> seulement lors des <em>commits</em></li>
+<li><strong>Windows</strong> : passer la valeur <code>true</code> pour appliquer la conversion
+ <code>CRLF--&gt;LF</code> lors des commits et pour appliquer la conversion
+ <code>LF--&gt;CRLF</code> lors de <em>checkouts</em></li>
+</ul>
+<p>Pour faire &quot;simple&quot;, on ne souhaite jamais historiser des modifications
+dans la base Git avec des fin de lignes <code>CRLF</code> mais que <code>LF</code>. Mais il
+faut que les caractères de fin de lignes s&#39;affichent correctement pour
+un utilisateur Windows lorsqu&#39;il extrait des fichiers de la base Git</p>
+<p><strong><em>Exécuter sur Linux</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">config</span> <span class="o">--</span><span class="nx">global</span> <span class="nx">core</span><span class="p">.</span><span class="nx">autocrlf</span> <span class="nx">input</span>
+<span class="nx">git</span> <span class="nx">config</span> <span class="o">--</span><span class="nx">global</span> <span class="nx">core</span><span class="p">.</span><span class="nx">safecrlf</span> <span class="kc">true</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Exécuter sur Windows</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">config</span> <span class="o">--</span><span class="nx">global</span> <span class="nx">core</span><span class="p">.</span><span class="nx">autocrlf</span> <span class="kc">true</span>
+<span class="nx">git</span> <span class="nx">config</span> <span class="o">--</span><span class="nx">global</span> <span class="nx">core</span><span class="p">.</span><span class="nx">safecrlf</span> <span class="kc">true</span>
+</pre></div>
+</code></pre>
+<h3><a name="tortoisegit" class="anchor" href="#tortoisegit"><span class="header-link"></span></a>TortoiseGit</h3>
+<p>TortoiseGit est un client graphique Git pour Windows. Il assiste
+l&#39;utilisateur dans la gestion de dépôts en lieu substitiant la saisie
+de commandes par l&#39;utilisation de boutons et de menus.</p>
+<p>Visiter le site officiel pour en savoir plus :
+<a href="https://code.google.com/p/tortoisegit/">https://code.google.com/p/tortoisegit/</a></p>
+</div><div class="pagination group"><a href="../../page/1/index.html" class="older">&#8592; Prev</a><a href="../../page/3/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

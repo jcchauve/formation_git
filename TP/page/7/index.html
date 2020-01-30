@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/6/index.html" class="older">&#8592; Prev</a><a href="../../page/8/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 7 : Valider des modifications</h1></div><div class="post-body markdown"><h2><a name="valider-les-modifications" class="anchor" href="#valider-les-modifications"><span class="header-link"></span></a>Valider les modifications</h2>
+<p>Maintenant que nous avons indexé la modification apportée à notre
+script <code>hello.html</code>, nous allons la valider dans l&#39;historique du dépôt.</p>
+<p>Pour cela nous allons utiliser la commande
+<a href="http://git-scm.com/docs/git-commit">git commit</a>.</p>
+<p><strong><em>Exécuter</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;Ajout fonctionnalité personnification&quot;</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;Ajout fonctionnalité personnification&quot;</span>
+<span class="p">[</span><span class="nx">master</span> <span class="mi">5</span><span class="nx">a67ff5</span><span class="p">]</span> <span class="nx">Ajout</span> <span class="nx">fonctionnalit</span><span class="err">é</span> <span class="nx">personnification</span>
+ <span class="mi">1</span> <span class="nx">file</span> <span class="nx">changed</span><span class="p">,</span> <span class="mi">3</span> <span class="nx">insertions</span><span class="p">(</span><span class="o">+</span><span class="p">),</span> <span class="mi">1</span> <span class="nx">deletion</span><span class="p">(</span><span class="o">-</span><span class="p">)</span>
+</pre></div>
+</code></pre>
+<p>Le résumé du commit (dernière ligne) nous indique le nombre de fichiers
+concerné par les modifications enregistrées et le nombre de lignes
+concernées (ajouts et suppressions).</p>
+<h2><a name="vrifier-le-statut-du-dpt" class="anchor" href="#vrifier-le-statut-du-dpt"><span class="header-link"></span></a>Vérifier le statut du dépôt</h2>
+<p>Vérifions maintenant le statut de notre dépôt.</p>
+<p><strong><em>Exécuter</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">status</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">status</span>
+<span class="nx">On</span> <span class="nx">branch</span> <span class="nx">master</span>
+<span class="nx">Untracked</span> <span class="nx">files</span><span class="o">:</span>
+  <span class="p">(</span><span class="nx">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="nx">to</span> <span class="nx">include</span> <span class="k">in</span> <span class="nx">what</span> <span class="nx">will</span> <span class="nx">be</span> <span class="nx">committed</span><span class="p">)</span>
+
+        <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+
+<span class="nx">nothing</span> <span class="nx">added</span> <span class="nx">to</span> <span class="nx">commit</span> <span class="nx">but</span> <span class="nx">untracked</span> <span class="nx">files</span> <span class="nx">present</span> <span class="p">(</span><span class="nx">use</span> <span class="s2">&quot;git add&quot;</span> <span class="nx">to</span> <span class="nx">track</span><span class="p">)</span>
+</pre></div>
+</code></pre>
+<p>Git nous informe qu&#39;il n&#39;y a pas de modification à valider. Il nous
+informe également de la présence d&#39;un fichier non-suivi. Nous allons
+créer un commit relatif à la création du fichier <code>MAINTAINERS.txt</code>.</p>
+<p><strong><em>Exécuter</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">add</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+<span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;Création carnet d&#39;adresses développeurs&quot;</span>
+<span class="nx">git</span> <span class="nx">status</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">add</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;Création carnet d&#39;adresses développeurs&quot;</span>
+<span class="p">[</span><span class="nx">master</span> <span class="mi">8</span><span class="nx">b88904</span><span class="p">]</span> <span class="nx">Cr</span><span class="err">é</span><span class="nx">ation</span> <span class="nx">carnet</span> <span class="nx">d</span><span class="err">&#39;</span><span class="nx">adresses</span> <span class="nx">d</span><span class="err">é</span><span class="nx">veloppeurs</span>
+ <span class="mi">1</span> <span class="nx">file</span> <span class="nx">changed</span><span class="p">,</span> <span class="mi">2</span> <span class="nx">insertions</span><span class="p">(</span><span class="o">+</span><span class="p">)</span>
+ <span class="nx">create</span> <span class="nx">mode</span> <span class="mi">100644</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">status</span>
+<span class="nx">On</span> <span class="nx">branch</span> <span class="nx">master</span>
+<span class="nx">nothing</span> <span class="nx">to</span> <span class="nx">commit</span><span class="p">,</span> <span class="nx">working</span> <span class="nx">directory</span> <span class="nx">clean</span>
+</pre></div>
+</code></pre>
+<p>L&#39;état de nos fichiers <code>hello.sh</code> et <code>MAINTAINERS</code> sont maintenant
+historisés dans la base du dépôt.</p>
+<p>Leur état aurait pu être historisés dans le même commit. Mais sous
+Git il faut réfléchir sur la nature des modifications à historiser
+et non en terme de fichier.</p>
+<p>Il n&#39;est pas rare qu&#39;un fichier modifié fasse l&#39;objet de plusieurs
+commits successifs : chacun des commits apportant une modification
+de nature différente.</p>
+<p><em>Exemple : la création d&#39;une page HTML pourrait faire l&#39;objet de
+plusieurs commits. Un premier pour l&#39;écriture du contenu, un second
+pour l&#39;écriture de la structure HTML et un troisième pour la mise en
+page CSS.</em></p>
+</div><div class="pagination group"><a href="../../page/6/index.html" class="older">&#8592; Prev</a><a href="../../page/8/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/22/index.html" class="older">&#8592; Prev</a><a href="../../page/24/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 23 : Cloner des dépôts</h1></div><div class="post-body markdown"><h2><a name="dpts-multiples" class="anchor" href="#dpts-multiples"><span class="header-link"></span></a>Dépôts multiples</h2>
+<p>Jusqu&#39;ici nous avons travaillé sur un seul dépôt Git. La collaboration
+consiste à synchroniser son dépôt local avec des d&#39;autres dépôts.</p>
+<p>Nous allons utiliser le dépôt de notre projet comme dépôt de référence.
+Nous allons le cloner et travailler sur ce clone pour découvrir le
+travail collaboratif avec Git.</p>
+<p><img src="http://gitimmersion.fr/git_clone.png" alt="Schéma d&#39;une opération de clonage"></p>
+<p>Dans un contexte réel, le dépôt de référence (<em>Original Repository</em> sur
+le schéma) est hébergé sur un serveur distant.</p>
+<h2><a name="cloner-un-dpt" class="anchor" href="#cloner-un-dpt"><span class="header-link"></span></a>Cloner un dépôt</h2>
+<p>La commande <a href="http://git-scm.com/docs/git-clone">git clone</a> permet de
+cloner un dépôt. Plusieurs modes de communications sont supportés pour
+pouvoir cloner des dépôts distants.</p>
+<p>Nous allons cloner notre dépôt <code>hello</code>.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">cd</span> <span class="o">~</span>
+<span class="nx">ls</span>
+<span class="nx">git</span> <span class="nx">clone</span> <span class="nx">hello</span> <span class="nx">cloned_hello</span>
+<span class="nx">ls</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">cd</span> <span class="o">~</span>
+
+<span class="nx">$</span> <span class="nx">ls</span>
+<span class="nx">hello</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">clone</span> <span class="nx">hello</span> <span class="nx">cloned_hello</span>
+<span class="nx">Cloning</span> <span class="nx">into</span> <span class="s1">&#39;cloned_hello&#39;</span><span class="p">...</span>
+<span class="nx">done</span><span class="p">.</span>
+
+<span class="nx">$</span> <span class="nx">ls</span>
+<span class="nx">cloned_hello</span>
+<span class="nx">hello</span>
+</pre></div>
+</code></pre>
+<p>Notre dépôt <code>hello</code> est le dépôt public de référence et notre dépôt
+<code>cloned_hello</code> est un dépôt de développement.</p>
+<p>Un dépôt de référence est normalement un dépôt &quot;nu&quot; (<em>bare</em>). Cela
+signifie qu&#39;il n&#39;a pas de répertoire de travail mais seulement la base
+Git. Notre dépôt <code>hello</code> n&#39;est pas un dépôt <em>bare</em>. Pour forcer
+Git à ne pas bloquer certaines opérations prévues pour les dépôts
+nus, appliquer la configuration suivante dans le dépôt <code>hello</code>.</p>
+<pre><code><div class="highlight"><pre><span class="nx">cd</span> <span class="o">~</span><span class="err">/hello</span>
+<span class="nx">git</span> <span class="nx">config</span> <span class="nx">receive</span><span class="p">.</span><span class="nx">denyCurrentBranch</span> <span class="nx">ignore</span>
+</pre></div>
+</code></pre>
+<h2><a name="consulter-lhistorique-du-clone" class="anchor" href="#consulter-lhistorique-du-clone"><span class="header-link"></span></a>Consulter l&#39;historique du clone</h2>
+<p>Git est un système de gestion de versions distribués. Les utilisateurs
+disposent du code d&#39;un dépôt et de son historique pour pouvoir
+travailler dessus localement.</p>
+<p>Nous allons consulter l&#39;historique de notre clone.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">cd</span> <span class="o">~</span><span class="err">/cloned_hello</span>
+<span class="nx">git</span> <span class="nx">branch</span>
+<span class="nx">git</span> <span class="nx">hist</span> <span class="o">--</span><span class="nx">all</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">cd</span> <span class="o">~</span><span class="err">/cloned_hello</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">hist</span> <span class="o">--</span><span class="nx">all</span>
+<span class="o">*</span>   <span class="mi">7</span><span class="nx">f5dcf7</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Fix</span> <span class="nx">conflit</span> <span class="nx">dans</span> <span class="nx">README</span><span class="p">.</span><span class="nx">md</span> <span class="p">(</span><span class="nx">HEAD</span><span class="p">,</span> <span class="nx">origin</span><span class="o">/</span><span class="nx">master</span><span class="p">,</span> <span class="nx">origin</span><span class="o">/</span><span class="nx">HEAD</span><span class="p">,</span> <span class="nx">master</span><span class="p">)</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">|\</span>
+<span class="o">|</span> <span class="o">*</span> <span class="mi">3</span><span class="nx">c75580</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Init</span> <span class="nx">doc</span> <span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">|</span> <span class="o">*</span> <span class="nx">d9e96f2</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Ajout</span> <span class="nx">recherche</span> <span class="nx">d</span><span class="err">é</span><span class="nx">veloppeur</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">*</span> <span class="o">|</span> <span class="nx">dd962f4</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Initialisation</span> <span class="nx">de</span> <span class="nx">la</span> <span class="nx">doc</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">|</span><span class="err">/</span>
+<span class="o">*</span> <span class="nx">b0d2dd1</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Cr</span><span class="err">é</span><span class="nx">ation</span> <span class="nx">carnet</span> <span class="nx">d</span><span class="s1">&#39;adresses développeurs [Steven Enten]</span>
+<span class="s1">| * 8b88904 2015-03-21 | Création carnet d&#39;</span><span class="nx">adresses</span> <span class="nx">d</span><span class="err">é</span><span class="nx">veloppeurs</span> <span class="p">(</span><span class="nx">tag</span><span class="o">:</span> <span class="nx">v1</span><span class="p">)</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">|</span><span class="err">/</span>
+<span class="o">*</span> <span class="mi">5</span><span class="nx">a67ff5</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Ajout</span> <span class="nx">fonctionnalit</span><span class="err">é</span> <span class="nx">personnification</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">*</span> <span class="mi">421</span><span class="nx">a6a8</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Initialisation</span> <span class="nx">du</span> <span class="nx">projet</span> <span class="p">(</span><span class="nx">tag</span><span class="o">:</span> <span class="nx">v0</span><span class="p">)</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+</pre></div>
+</code></pre>
+<p><img src="http://i62.tinypic.com/euli0l.png" alt="Visualisation de l&#39;historique du clone"></p>
+<p>Nous pouvons constater la présences de branches particulières :
+<code>origin/master</code> et <code>origin/HEAD</code>. Sous Gitk ces branches sont préfixées
+<code>remotes</code>. Ce préfixe indique qu&#39;il s&#39;agit de branches distantes.</p>
+</div><div class="pagination group"><a href="../../page/22/index.html" class="older">&#8592; Prev</a><a href="../../page/24/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

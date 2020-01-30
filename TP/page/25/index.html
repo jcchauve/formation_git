@@ -1,0 +1,78 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/24/index.html" class="older">&#8592; Prev</a><a href="../../page/26/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 25 : Envoyer des modifications</h1></div><div class="post-body markdown"><h2><a name="modifier-le-dpt-local" class="anchor" href="#modifier-le-dpt-local"><span class="header-link"></span></a>Modifier le dépôt local</h2>
+<p>Pour partager des modifications avec le dépôt distant, il faut
+lui envoyer ou &quot;pousser&quot; les commits des modifications à partager.</p>
+<p>Nous allons d&#39;abord créer un nouveau commit dans notre branche locale.
+Modifier le fichier <code>README.md</code> pour replacer dans l&#39;ordre les sections
+de la documentation. Puis commiter les modifications.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">cd</span> <span class="o">~</span><span class="err">/cloned_hello</span>
+<span class="nx">cat</span> <span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
+<span class="nx">git</span> <span class="nx">add</span> <span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
+<span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="err">&quot;</span><span class="nx">Fix</span> <span class="nx">ordre</span> <span class="nx">des</span> <span class="nx">sections</span><span class="err">&quot;</span>
+<span class="nx">git</span> <span class="nx">status</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">cd</span> <span class="o">~</span><span class="err">/cloned_hello</span>
+
+<span class="nx">$</span> <span class="nx">cat</span> <span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
+<span class="err">#</span> <span class="nx">Doc</span> <span class="nx">du</span> <span class="nx">projet</span>
+<span class="err">##</span> <span class="nx">Script</span> <span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span>
+<span class="nx">Synopsys</span> <span class="o">:</span> <span class="nx">find</span><span class="o">-</span><span class="nx">dev</span> <span class="o">&lt;</span><span class="nx">devname</span><span class="o">&gt;</span>
+<span class="nx">Recherche</span> <span class="o">&lt;</span><span class="nx">devname</span><span class="o">&gt;</span> <span class="nx">dans</span> <span class="nx">le</span> <span class="nx">carnet</span> <span class="nx">d</span><span class="s1">&#39;adresses des développeurs.</span>
+
+<span class="s1">$ git add README.md</span>
+
+<span class="s1">$ git commit -m &quot;Fix ordre des sections&quot;</span>
+<span class="s1">[master 5826b6c] Fix ordre des sections</span>	
+<span class="s1"> 1 file changed, 1 insertion(+), 1 deletion(-)</span>
+
+<span class="s1">$ git status</span>
+<span class="s1">On branch master</span>
+<span class="s1">Your branch is ahead of &#39;</span><span class="nx">origin</span><span class="o">/</span><span class="nx">master</span><span class="err">&#39;</span> <span class="nx">by</span> <span class="mi">1</span> <span class="nx">commit</span><span class="p">.</span>
+  <span class="p">(</span><span class="nx">use</span> <span class="s2">&quot;git push&quot;</span> <span class="nx">to</span> <span class="nx">publish</span> <span class="nx">your</span> <span class="nx">local</span> <span class="nx">commits</span><span class="p">)</span>
+
+<span class="nx">nothing</span> <span class="nx">to</span> <span class="nx">commit</span><span class="p">,</span> <span class="nx">working</span> <span class="nx">directory</span> <span class="nx">clean</span>
+</pre></div>
+</code></pre>
+<p>Le nom <code>origin</code> est le nom donné par défaut au dépôt distant de
+référence.</p>
+<p>La commande <code>git status</code> nous informe que notre branche locale <code>master</code>
+a un commit d&#39;avance sur la branche distante.</p>
+<h2><a name="envoyer-les-modifications-au-dpt-distant" class="anchor" href="#envoyer-les-modifications-au-dpt-distant"><span class="header-link"></span></a>Envoyer les modifications au dépôt distant</h2>
+<p>La commande <a href="http://git-scm.com/docs/git-push">git push</a> permet
+d&#39;envoyer des modifications locales vers des dépôts distants.</p>
+<p>Nous allons envoyer nos modifications de la branche locale <code>master</code>
+vers la branche distante <code>origin/master</code> du dépôt distant <code>origin</code>.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">cd</span> <span class="o">~</span><span class="err">/cloned_hello</span>
+<span class="nx">git</span> <span class="nx">push</span> <span class="nx">origin</span> <span class="nx">master</span>
+<span class="nx">git</span> <span class="nx">status</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">cd</span> <span class="o">~</span><span class="err">/cloned_hello</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">push</span> <span class="nx">origin</span> <span class="nx">master</span>
+<span class="nx">Counting</span> <span class="nx">objects</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span> <span class="nx">done</span><span class="p">.</span>
+<span class="nx">Delta</span> <span class="nx">compression</span> <span class="nx">using</span> <span class="nx">up</span> <span class="nx">to</span> <span class="mi">4</span> <span class="nx">threads</span><span class="p">.</span>
+<span class="nx">Compressing</span> <span class="nx">objects</span><span class="o">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="nx">done</span><span class="p">.</span>
+<span class="nx">Writing</span> <span class="nx">objects</span><span class="o">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="mi">308</span> <span class="nx">bytes</span> <span class="o">|</span> <span class="mi">0</span> <span class="nx">bytes</span><span class="o">/</span><span class="nx">s</span><span class="p">,</span> <span class="nx">done</span><span class="p">.</span>
+<span class="nx">Total</span> <span class="mi">3</span> <span class="p">(</span><span class="nx">delta</span> <span class="mi">2</span><span class="p">),</span> <span class="nx">reused</span> <span class="mi">0</span> <span class="p">(</span><span class="nx">delta</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nx">To</span> <span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">steven</span><span class="o">/</span><span class="nx">hello</span>
+   <span class="mi">7</span><span class="nx">f5dcf7</span><span class="p">..</span><span class="mi">5826</span><span class="nx">b6c</span>  <span class="nx">master</span> <span class="o">-&gt;</span> <span class="nx">master</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">status</span>
+<span class="nx">On</span> <span class="nx">branch</span> <span class="nx">master</span>
+<span class="nx">Your</span> <span class="nx">branch</span> <span class="nx">is</span> <span class="nx">up</span><span class="o">-</span><span class="nx">to</span><span class="o">-</span><span class="nx">date</span> <span class="kd">with</span> <span class="s1">&#39;origin/master&#39;</span><span class="p">.</span>
+
+<span class="nx">nothing</span> <span class="nx">to</span> <span class="nx">commit</span><span class="p">,</span> <span class="nx">working</span> <span class="nx">directory</span> <span class="nx">clean</span>
+</pre></div>
+</code></pre>
+<p>La vérification de notre dépôt nous informe que notre branche locale
+est bien synchronisée avec la branche distante.</p>
+<p>L&#39;envoi de modifications est possibles seulement si notre branche
+locale est à jour. Si la branche distante avait avancée, nous aurions
+été forcé de récupérer les modifications et les intégrer à notre
+branche pour pouvoir pousser les notres.</p>
+</div><div class="pagination group"><a href="../../page/24/index.html" class="older">&#8592; Prev</a><a href="../../page/26/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

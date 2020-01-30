@@ -1,0 +1,63 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/19/index.html" class="older">&#8592; Prev</a><a href="../../page/21/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 20 : Comparer des branches</h1></div><div class="post-body markdown"><h2><a name="comparer-des-branches" class="anchor" href="#comparer-des-branches"><span class="header-link"></span></a>Comparer des branches</h2>
+<p>La commande <a href="http://git-scm.com/docs/git-diff">git diff</a> permet de
+comparer deux branches. Elle permet plus généralement de comparer
+deux commits.</p>
+<p>Nous souhaitons comparer la branche principale <code>master</code> et la branche
+<code>experimental</code>.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">diff</span> <span class="nx">master</span> <span class="nx">experimental</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">diff</span> <span class="nx">master</span> <span class="nx">experimental</span>
+<span class="nx">diff</span> <span class="o">--</span><span class="nx">git</span> <span class="nx">a</span><span class="o">/</span><span class="nx">README</span><span class="p">.</span><span class="nx">md</span> <span class="nx">b</span><span class="o">/</span><span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
+<span class="nx">deleted</span> <span class="nx">file</span> <span class="nx">mode</span> <span class="mi">100644</span>
+<span class="nx">index</span> <span class="mi">5583</span><span class="nx">c2c</span><span class="p">..</span><span class="mi">0000000</span>
+<span class="o">---</span> <span class="nx">a</span><span class="o">/</span><span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
+<span class="o">+++</span> <span class="err">/dev/null</span>
+<span class="err">@@</span> <span class="o">-</span><span class="mi">1</span> <span class="o">+</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="err">@@</span>
+<span class="o">-</span><span class="err">#</span> <span class="nx">Doc</span> <span class="nx">du</span> <span class="nx">projet</span>
+<span class="nx">diff</span> <span class="o">--</span><span class="nx">git</span> <span class="nx">a</span><span class="o">/</span><span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span> <span class="nx">b</span><span class="o">/</span><span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span>
+<span class="k">new</span> <span class="nx">file</span> <span class="nx">mode</span> <span class="mi">100755</span>
+<span class="nx">index</span> <span class="mi">0000000</span><span class="p">..</span><span class="mi">34</span><span class="nx">c29ed</span>
+<span class="o">---</span> <span class="err">/dev/null</span>
+<span class="o">+++</span> <span class="nx">b</span><span class="o">/</span><span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span>
+<span class="err">@@</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span> <span class="err">@@</span>
+<span class="o">+</span><span class="err">#</span><span class="o">!</span><span class="err">/bin/bash</span>
+<span class="o">+</span><span class="p">[</span> <span class="nx">$</span><span class="err">#</span> <span class="o">-</span><span class="nx">lt</span> <span class="mi">1</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">echo</span> <span class="s2">&quot;Personne à rechercher&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">exit</span> <span class="mi">1</span>
+<span class="o">+</span><span class="nx">RESULT</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="nx">cat</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span> <span class="o">|</span> <span class="nx">grep</span> <span class="nx">$1</span><span class="p">)</span>
+<span class="o">+</span><span class="p">[</span> <span class="s2">&quot;$RESULT&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">echo</span> <span class="s2">&quot;Pas de résultats&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">exit</span> <span class="mi">0</span>
+<span class="o">+</span><span class="nx">echo</span> <span class="nx">$RESULT</span>
+<span class="o">+</span><span class="nx">exit</span> <span class="mi">0</span>
+</pre></div>
+</code></pre>
+<p>Ce comparatif nous montre les modifications à appliquer à <code>master</code>
+pour correspondre à l&#39;état de <code>experimental</code>. Cela revient à
+supprimer le fichier <code>README.md</code> et créer le fichier <code>find-dev.sh</code>.</p>
+<h2><a name="comparer-avec-un-client-graphique" class="anchor" href="#comparer-avec-un-client-graphique"><span class="header-link"></span></a>Comparer avec un client graphique</h2>
+<p>Git permet de configurer des outils graphiques externes pour comparer
+des <em>commits</em> et pour gérer des conflits de fusion.</p>
+<p>Nous allons tenter de réaliser un comparatif avec l&#39;outil
+<a href="http://www.perforce.com/downloads/20-User?qt-perforce_downloads_step_3=1#product-detail-10">P4Merge</a>.
+Voici la marche à suivre.</p>
+<ol>
+<li>Télécharger et installer le programme
+<a href="http://www.perforce.com/downloads/20-User?qt-perforce_downloads_step_3=1#product-detail-10">P4Merge</a>
+(veillez à n&#39;installer que le composant <em>Visual Merge Tool</em>)</li>
+<li>Configurer au niveau utilisateur (option <code>--global</code>) P4Merge sous
+Git via l&#39;option <code>mergetool.p4merge.path</code> en passant en valeur le
+chemin absolu vers l&#39;exécutable <code>p4merge.exe</code></li>
+<li>Indiquer à Git (toujours au niveau utilisateur) que P4Merge est
+l&#39;outil graphique par défaut via l&#39;option <code>merge.tool</code> et la valeur
+<code>p4merge</code></li>
+</ol>
+<p>Une fois configuré nous allons lancer P4Merge pour comparer nos deux
+branches.</p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">config</span> <span class="o">--</span><span class="nx">global</span> <span class="nx">mergetool</span><span class="p">.</span><span class="nx">p4merge</span><span class="p">.</span><span class="nx">path</span> <span class="s2">&quot;C:\Program Files\Perforce\p4merge.exe&quot;</span>
+<span class="nx">git</span> <span class="nx">config</span> <span class="o">--</span><span class="nx">global</span> <span class="nx">merge</span><span class="p">.</span><span class="nx">tool</span> <span class="nx">p4merge</span>
+
+<span class="nx">git</span> <span class="nx">difftool</span> <span class="nx">master</span> <span class="nx">experimental</span>
+</pre></div>
+</code></pre>
+<p><img src="http://i60.tinypic.com/10citeo.png" alt="Comparaison avec P4Merge"></p>
+</div><div class="pagination group"><a href="../../page/19/index.html" class="older">&#8592; Prev</a><a href="../../page/21/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

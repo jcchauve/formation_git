@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/9/index.html" class="older">&#8592; Prev</a><a href="../../page/11/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 10 : Récupérer d'anciennes versions</h1></div><div class="post-body markdown"><h2><a name="obtenir-lemprunte-des-prcdentes-versions" class="anchor" href="#obtenir-lemprunte-des-prcdentes-versions"><span class="header-link"></span></a>Obtenir l&#39;empreinte des précédentes versions</h2>
+<p>Dans l&#39;historique, chaque commit est référencé par les 7 premiers
+caractères de son empreinte. Ces quelques caractères suffisent à
+identifier un commit de manière unique.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">hist</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">hist</span>
+<span class="o">*</span> <span class="mi">8</span><span class="nx">b88904</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Cr</span><span class="err">é</span><span class="nx">ation</span> <span class="nx">carnet</span> <span class="nx">d</span><span class="err">&#39;</span><span class="nx">adresses</span> <span class="nx">d</span><span class="err">é</span><span class="nx">veloppeurs</span> <span class="p">(</span><span class="nx">HEAD</span><span class="p">,</span> <span class="nx">master</span><span class="p">)</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">*</span> <span class="mi">5</span><span class="nx">a67ff5</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Ajout</span> <span class="nx">fonctionnalit</span><span class="err">é</span> <span class="nx">personnification</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">*</span> <span class="mi">421</span><span class="nx">a6a8</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Initialisation</span> <span class="nx">du</span> <span class="nx">projet</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+</pre></div>
+</code></pre>
+<h2><a name="restaurer-ltat-dun-fichier" class="anchor" href="#restaurer-ltat-dun-fichier"><span class="header-link"></span></a>Restaurer l&#39;état d&#39;un fichier</h2>
+<p>Le premier commit est identité par l&#39;empreinte <code>421a6a8</code>.</p>
+<p>En utilisant la commande
+<a href="http://git-scm.com/docs/git-checkout">git checkout</a>, nous allons
+pouvoir restaurer notre fichier <code>hello.sh</code> à son état initial.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">cat</span> <span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+<span class="nx">git</span> <span class="nx">checkout</span> <span class="mi">421</span><span class="nx">a6a8</span> <span class="o">--</span> <span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+<span class="nx">cat</span> <span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">cat</span> <span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+<span class="err">#</span><span class="o">!</span><span class="err">/bin/bash</span>
+<span class="nx">WORD</span><span class="o">=</span><span class="s2">&quot;World&quot;</span>
+<span class="p">[</span> <span class="mi">0</span> <span class="o">-</span><span class="nx">lt</span> <span class="nx">$</span><span class="err">#</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">WORD</span><span class="o">=</span><span class="s2">&quot;$@&quot;</span>
+<span class="nx">echo</span> <span class="s2">&quot;Hello, $WORD&quot;</span>
+<span class="nx">exit</span> <span class="mi">0</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">checkout</span> <span class="mi">421</span><span class="nx">a6a8</span> <span class="o">--</span> <span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+
+<span class="nx">$</span> <span class="nx">cat</span> <span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+<span class="err">#</span><span class="o">!</span><span class="err">/bin/bash</span>
+<span class="nx">echo</span> <span class="s2">&quot;Hello, World&quot;</span>
+<span class="nx">exit</span> <span class="mi">0</span>
+</pre></div>
+</code></pre>
+<h2><a name="restaurer-les-fichiers-leur-dernier-tat-valid" class="anchor" href="#restaurer-les-fichiers-leur-dernier-tat-valid"><span class="header-link"></span></a>Restaurer les fichiers à leur dernier état validé</h2>
+<p>Remplacer <code>hello.sh</code> par un point (<code>.</code>) lors de l&#39;appel à
+<code>git checkout</code>restaure tous les fichiers à l&#39;état du commit.</p>
+<ul>
+<li>Restaurer l&#39;état des fichiers d&#39;un commit :
+ <code>git checkout 421a6a8 -- .</code></li>
+<li>Restaurer l&#39;état des fichiers au dernier commit :
+ <code>git checkout HEAD -- .</code></li>
+</ul>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">HEAD</span> <span class="o">--</span> <span class="p">.</span>
+<span class="nx">cat</span> <span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">HEAD</span> <span class="o">--</span> <span class="p">.</span>
+
+<span class="nx">$</span> <span class="nx">cat</span> <span class="nx">hello</span><span class="p">.</span><span class="nx">sh</span>
+<span class="err">#</span><span class="o">!</span><span class="err">/bin/bash</span>
+<span class="nx">WORD</span><span class="o">=</span><span class="s2">&quot;World&quot;</span>
+<span class="p">[</span> <span class="mi">0</span> <span class="o">-</span><span class="nx">lt</span> <span class="nx">$</span><span class="err">#</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">WORD</span><span class="o">=</span><span class="s2">&quot;$@&quot;</span>
+<span class="nx">echo</span> <span class="s2">&quot;Hello, $WORD&quot;</span>
+<span class="nx">exit</span> <span class="mi">0</span>
+</pre></div>
+</code></pre>
+</div><div class="pagination group"><a href="../../page/9/index.html" class="older">&#8592; Prev</a><a href="../../page/11/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

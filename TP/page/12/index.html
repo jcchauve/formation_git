@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/11/index.html" class="older">&#8592; Prev</a><a href="../../page/13/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 12 : Annuler des changements locaux</h1></div><div class="post-body markdown"><h2><a name="modifier-un-fichier" class="anchor" href="#modifier-un-fichier"><span class="header-link"></span></a>Modifier un fichier</h2>
+<p>Nous allons modifier notre fichier <code>MAINTAINERS.txt</code> et vérifier l&#39;état
+de notre dépôt.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">echo</span> <span class="s2">&quot;bill@microsoft.com&quot;</span> <span class="o">&gt;&gt;</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+<span class="nx">cat</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+<span class="nx">git</span> <span class="nx">status</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">echo</span> <span class="s2">&quot;bill@microsoft.com&quot;</span> <span class="o">&gt;&gt;</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+
+<span class="nx">$</span> <span class="nx">cat</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+<span class="nx">John</span> <span class="nx">Doe</span> <span class="o">&lt;</span><span class="nx">jd</span><span class="err">@</span><span class="nx">internet</span><span class="p">.</span><span class="nx">com</span><span class="o">&gt;</span>
+<span class="nx">Bruce</span> <span class="nx">Wayne</span> <span class="o">&lt;</span><span class="nx">batman</span><span class="err">@</span><span class="nx">wayne</span><span class="o">-</span><span class="nx">corp</span><span class="p">.</span><span class="nx">com</span>
+<span class="nx">bill</span><span class="err">@</span><span class="nx">microsoft</span><span class="p">.</span><span class="nx">com</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">status</span>
+<span class="nx">On</span> <span class="nx">branch</span> <span class="nx">master</span>
+<span class="nx">Changes</span> <span class="nx">not</span> <span class="nx">staged</span> <span class="k">for</span> <span class="nx">commit</span><span class="o">:</span>
+  <span class="p">(</span><span class="nx">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="nx">to</span> <span class="nx">update</span> <span class="nx">what</span> <span class="nx">will</span> <span class="nx">be</span> <span class="nx">committed</span><span class="p">)</span>
+  <span class="p">(</span><span class="nx">use</span> <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> <span class="nx">to</span> <span class="nx">discard</span> <span class="nx">changes</span> <span class="k">in</span> <span class="nx">working</span> <span class="nx">directory</span><span class="p">)</span>
+
+        <span class="nx">modified</span><span class="o">:</span>   <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+
+<span class="nx">no</span> <span class="nx">changes</span> <span class="nx">added</span> <span class="nx">to</span> <span class="nx">commit</span> <span class="p">(</span><span class="nx">use</span> <span class="s2">&quot;git add&quot;</span> <span class="nx">and</span><span class="o">/</span><span class="nx">or</span> <span class="s2">&quot;git commit -a&quot;</span><span class="p">)</span>
+</pre></div>
+</code></pre>
+<p>Git a bien détecté que notre fichier <code>MAINTAINERS.txt</code> a bien été
+modifié.</p>
+<h2><a name="annuler-le-changement-dans-le-rpertoire-de-travail" class="anchor" href="#annuler-le-changement-dans-le-rpertoire-de-travail"><span class="header-link"></span></a>Annuler le changement dans le répertoire de travail</h2>
+<p>La commande <a href="http://git-scm.com/docs/git-checkout">git checkout</a> permet
+de restaurer notre fichier à son dernier état validé.</p>
+<p>Nous allons restaurer l&#39;état de <code>MAINTAINERS.txt</code>.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+<span class="nx">cat</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+<span class="nx">git</span> <span class="nx">status</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+
+<span class="nx">$</span> <span class="nx">cat</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span>
+<span class="nx">John</span> <span class="nx">Doe</span> <span class="o">&lt;</span><span class="nx">jd</span><span class="err">@</span><span class="nx">internet</span><span class="p">.</span><span class="nx">com</span><span class="o">&gt;</span>
+<span class="nx">Bruce</span> <span class="nx">Wayne</span> <span class="o">&lt;</span><span class="nx">batman</span><span class="err">@</span><span class="nx">wayne</span><span class="o">-</span><span class="nx">corp</span><span class="p">.</span><span class="nx">com</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">status</span>
+<span class="nx">On</span> <span class="nx">branch</span> <span class="nx">master</span>
+<span class="nx">nothing</span> <span class="nx">to</span> <span class="nx">commit</span><span class="p">,</span> <span class="nx">working</span> <span class="nx">directory</span> <span class="nx">clean</span>
+</pre></div>
+</code></pre>
+</div><div class="pagination group"><a href="../../page/11/index.html" class="older">&#8592; Prev</a><a href="../../page/13/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

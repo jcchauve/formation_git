@@ -1,0 +1,222 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav -->><div class="content"><div class="pagination group"><a href="../../index.html" class="older">&#8592; Prev</a><a href="../../page/2/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 1 : Installation</h1></div><div class="post-body markdown"><h2><a name="linux" class="anchor" href="#linux"><span class="header-link"></span></a>Linux</h2>
+<p>Sur une distribution Linux majeure (comme Debian) ou grand-public (comme
+Ubuntu), l&#39;installation de Git est réalisable en une ligne de commande
+depuis le terminal (ou <em>shell</em>). Cette ligne lance l&#39;installation du
+paquet <code>git</code> via le gestionnaire de paquets de la distribution utilisée
+(sauf FreeBSD où Git est compilé à partir de son code source).</p>
+<ul>
+<li>Ouvrir le terminal/shell</li>
+<li>Saisir la commande appropriée à votre distribution<ul>
+<li>Debian/Ubuntu : <code>apt-get install git</code></li>
+<li>Fedora : <code>yum install git</code></li>
+<li>Gentoo : <code>emerge --ask --verbose dev-vcs/git</code></li>
+<li>Arch Linux : <code>pacman -S git</code></li>
+<li>openSUSE : <code>zypper install git</code></li>
+<li>FreeBSD : <code>cd /usr/ports/devel/git; make install</code></li>
+<li>Solaris 11 Express : <code>pkg install developer/versioning/git</code></li>
+<li>OpenBSD : <code>pkg_add git</code></li>
+</ul>
+</li>
+</ul>
+<p>Executer la commande <code>git --version</code> pour vérifier que Git a
+correctement été installé. Cette commande affiche la version installée
+de Git.</p>
+<h2><a name="windows" class="anchor" href="#windows"><span class="header-link"></span></a>Windows</h2>
+<p>Sur Windows la procédure d&#39;installation de Git est différente. Git est
+une interface en ligne de commande (Command Line Interface ou CLI). Un
+programme CLI s&#39;utilise à travers un terminal. Git est conçu pour être
+utilisé dans un terminal Unix. Il ne peut pas être utilisé dans le
+&quot;terminal&quot; (console ou <em>shell</em>) Windows. Pour pouvoir utiliser Git, il
+faut installer des composants logiciels pour disposer d&#39;un émulateur de
+terminal Unix dans Windows.</p>
+<p>Le programme <a href="http://msysgit.github.io">msysGit</a> propose d&#39;installer
+tout le nécessaire pour pouvoir utiliser Git sur Windows au travers d&#39;un
+émulateur de terminal Unix et même depuis la console Windows (cette
+configuration est déconseillée pour les utilisateurs non-expérimentés).</p>
+<ul>
+<li>Télécharger le programme d&#39;installation sur le site officiel de
+<a href="http://msysgit.github.io">msysGit</a></li>
+<li>Lancer le programme d&#39;installation<ul>
+<li>Ecran 1 : fermer tous les autres programmes ouverts et cliquer
+ sur <code>Next &gt;</code></li>
+<li>Ecran 2 : prendre connaissance de la licence logiciel (GNU GPL v2)
+ et cliquer sur <code>Next &gt;</code></li>
+<li>Ecran 3 : choisir le répertoire dans lequel installer Git et
+ cliquer sur <code>Next &gt;</code></li>
+<li>Ecran 4 : sélectionner les composants facultatifs à installer et
+ cliquer sur <code>Next &gt;</code></li>
+<li>Ecran 5 : choisir s&#39;il faut créer des raccourcis dans le menu
+ <em>Démarrer</em> et cliquer sur <code>Next &gt;</code></li>
+<li>Ecran 6 : conserver l&#39;option <em>&quot;Use Git from Git Bash only&quot;</em>
+ sélectionnée et cliquer sur <code>Next&gt;</code></li>
+<li>Ecran 7 : conserver l&#39;option <em>&quot;Checkout Windows-style, commit
+ Unix-style line endings&quot;</em> sélectionnée et cliquer sur <code>Next&gt;</code></li>
+<li>Ecran 8 : patienter pendant l&#39;installation de Git</li>
+<li>Ecran 9 : cliquer sur <code>Finish</code> pour terminer le programme
+ d&#39;installation</li>
+</ul>
+</li>
+<li>Vérifier que Git s&#39;est correctement installée<ul>
+<li>Ouvrir le programme <code>Git Bash</code> (raccourci dans le menu <em>Démarrer</em>)</li>
+<li>Executer la commande <code>git --version</code></li>
+<li>La version installée de Git doit s&#39;imprimer à l&#39;écran</li>
+</ul>
+</li>
+</ul>
+<p>Le programme <a href="http://msysgit.github.io">msysgit</a> installe plusieurs
+exécutables dans le répertoire d&#39;installation (définie dans l&#39;écran 3).
+Deux exécutables doivent attirer notre attention.</p>
+<ul>
+<li><code>{GIT_FOLDER}\bin\sh.exe</code> : ouvre la fenêtre du terminal Unix (point
+ d&#39;entré de l&#39;émulateur)</li>
+<li><code>{GIT_FOLDER}\libexec\git-core\git-gui.exe</code> : client graphique Git-Gui</li>
+</ul>
+<p>Pour démarrer <strong>Git Bash</strong> – l&#39;émulateur de <em>shell</em> Unix – il faut
+utiliser l&#39;exécutable <code>sh.exe</code>.</p>
+<pre><code><div class="highlight"><pre><span class="s2">&quot;C:\Program Files (x86)\Git\bin\sh.exe&quot;</span> <span class="o">--</span><span class="nx">login</span> <span class="o">-</span><span class="nx">i</span>
+</pre></div>
+</code></pre>
+<p>Pour démarrer <strong>Git-Gui</strong> il faut utiliser l&#39;exécutable <code>wish.exe</code> et
+passer le programme <code>git-gui</code> en premier paramètre.</p>
+<pre><code><div class="highlight"><pre><span class="s2">&quot;C:\Program Files (x86)\Git\bin\wish.exe&quot;</span> <span class="s2">&quot;C:\Program Files (x86)\Git\libexec\git-core\git-gui&quot;</span>
+</pre></div>
+</code></pre>
+<p>Les raccourcis pour ouvrir les programmes Git Bash et Git-Gui exécutent
+les commandes ci-dessus pour démarrer. Nous pouvons vérifier cette
+information en consultant les propriétés des raccourcis respectifs
+(information &quot;Cible&quot;).</p>
+<h2><a name="les-shells-unix-et-windows" class="anchor" href="#les-shells-unix-et-windows"><span class="header-link"></span></a>Les shells Unix et Windows</h2>
+<p>Le terminal ou <em>shell</em> est un programme qui à la première utilisation
+donne l&#39;impression d&#39;être perdu dans les coins les plus sombres d&#39;un
+ordinateur. Une personne non-familiarisée à l&#39;utilisation d&#39;un shell
+préfère utiliser un explorateur graphique pour naviguer. Pourtant le
+shell offre une navigation tout aussi efficace et bien plus encore.
+L&#39;explorateur graphique s&#39;appuie d&#39;ailleurs sur des commandes du shell.</p>
+<p>Le tableau ci-dessous liste quelques commandes essentielles à connaître
+pour naviguer dans un shell Unix ou Windows.</p>
+<table>
+<thead>
+<tr>
+<th>Commande</th>
+<th>Windows</th>
+<th>Unix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Obtenir de l&#39;aide à propos d&#39;une commande</td>
+<td><code>help &lt;cmd&gt;</code></td>
+<td><code>man &lt;cmd&gt;</code></td>
+</tr>
+<tr>
+<td>Vider l&#39;écran du shell</td>
+<td><code>cls</code></td>
+<td><code>clear</code></td>
+</tr>
+<tr>
+<td>Afficher le chemin du répertoire courant</td>
+<td><code>cd</code></td>
+<td><code>pwd</code></td>
+</tr>
+<tr>
+<td>Changer de répertoire</td>
+<td><code>cd &lt;path&gt;</code></td>
+<td><code>cd &lt;path&gt;</code></td>
+</tr>
+<tr>
+<td>Lister le contenu du répertoire courant</td>
+<td><code>dir</code></td>
+<td><code>ls</code></td>
+</tr>
+<tr>
+<td>Lister le contenu d&#39;un répertoire</td>
+<td><code>dir &lt;path&gt;</code></td>
+<td><code>ls &lt;path&gt;</code></td>
+</tr>
+<tr>
+<td>Lister le contenu d&#39;un répertoire et sous-répertoires</td>
+<td><code>tree &lt;path&gt;</code></td>
+<td><code>ls -R &lt;path&gt;</code></td>
+</tr>
+<tr>
+<td>Afficher le contenu d&#39;un fichier</td>
+<td><code>type &lt;path&gt;</code></td>
+<td><code>cat &lt;path&gt;</code></td>
+</tr>
+<tr>
+<td>Créer un répertoire</td>
+<td><code>mkdir &lt;path&gt;</code></td>
+<td><code>mkdir &lt;path&gt;</code></td>
+</tr>
+<tr>
+<td>Renommer un répertoire ou un fichier</td>
+<td><code>ren &lt;oldname&gt; &lt;newname&gt;</code></td>
+<td><code>mv &lt;oldname&gt; &lt;newname&gt;</code></td>
+</tr>
+<tr>
+<td>Déplacer un répertoire ou un fichier</td>
+<td><code>move &lt;oldpath&gt; &lt;newpath&gt;</code></td>
+<td><code>mv &lt;oldpath&gt; &lt;newpath&gt;</code></td>
+</tr>
+<tr>
+<td>Copier un fichier</td>
+<td><code>copy &lt;path&gt; &lt;copypath&gt;</code></td>
+<td><code>cp &lt;path&gt; &lt;copypath&gt;</code></td>
+</tr>
+<tr>
+<td>Copier un répertoire et son contenu</td>
+<td><code>xcopy &lt;path&gt; &lt;copypath&gt;</code></td>
+<td><code>cp -R &lt;path&gt; &lt;copypath&gt;</code></td>
+</tr>
+<tr>
+<td>Supprimer un répertoire vide</td>
+<td><code>rmdir &lt;path&gt;</code></td>
+<td><code>rmdir &lt;path&gt;</code></td>
+</tr>
+<tr>
+<td>Supprimer un répertoire non-vide</td>
+<td><code>deltree &lt;path&gt;</code></td>
+<td><code>rm -r &lt;path&gt;</code></td>
+</tr>
+<tr>
+<td>Supprimer un fichier</td>
+<td><code>del &lt;path&gt;</code></td>
+<td><code>rm &lt;path&gt;</code></td>
+</tr>
+<tr>
+<td>Ouvrir l&#39;explorateur graphique</td>
+<td><code>explorer &lt;path&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p><em>Source : <a href="http://www.lemoda.net/windows/windows2unix/windows2unix.html">lemoda.net</a></em></p>
+<p>Un <em>path</em> ou &quot;chemin&quot; est une chaîne de caractère désignant un
+répertoire ou un fichier de l&#39;ordinateur. Un chemin Unix est différent
+d&#39;un chemin Windows :</p>
+<ul>
+<li>Windows utilise le caractère <code>\</code> pour séparer les répertoires dans
+ un chemin tandis que le caractère <code>/</code> est utilisé sous Unix</li>
+<li>Un chemin Windows commence généralement par
+ <code>C:\</code> alors qu&#39;un chemin Unix commence par <code>/</code></li>
+<li>Sous Windows et sous Unix le caractère <code>.</code> en début de chemin et les
+ caractères <code>..</code> dans un chemin ont la même signification<ul>
+<li>L&#39;utilisation d&#39;un <code>.</code> en début de chemin spécifie un <em>chemin
+ relatif</em> (contrairement à l&#39;utilisation de <code>C:\</code> ou <code>/</code> qui
+ spécifient un <em>chemin absolu</em>)</li>
+<li>L&#39;utilisation des caractères <code>..</code> dans un chemin désigne le
+ répertoire parent</li>
+</ul>
+</li>
+</ul>
+<p>Quelques exemples où nous nous trouvons dans le répertoire <code>C:\Users\Me</code>
+pour Windows et dans le répertoire <code>/home/me/</code> sous Unix (ou
+<code>/c/Users/Me</code> sous l&#39;émulateur Git Bash).</p>
+<ul>
+<li>Lister le répertoire parent : <code>dir ..</code> sous Windows et <code>ls ..</code>
+ sous Unix</li>
+<li>Afficher le contenu de <code>monfichier.txt</code> dans le répertoire courant :
+ <code>type .\monfichier.txt</code> sous Windows et <code>cat ./monfichier.txt</code></li>
+</ul>
+<p>Les chemins relatifs sont un bon moyen d&#39;économiser des frappes
+supplémentaires sur le clavier.</p>
+</div><div class="pagination group"><a href="../../index.html" class="older">&#8592; Prev</a><a href="../../page/2/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

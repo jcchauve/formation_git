@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/16/index.html" class="older">&#8592; Prev</a><a href="../../page/18/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 17 : Créer une branche</h1></div><div class="post-body markdown"><h2><a name="crer-une-nouvelle-branche" class="anchor" href="#crer-une-nouvelle-branche"><span class="header-link"></span></a>Créer une nouvelle branche</h2>
+<p>Nous prévoyons d&#39;ajouter une nouvelle fonctionnalité à notre projet.
+Son développement aura une certaine durée dans le temps. Son aspect
+expérimentale nous contraint à vouloir séparer son développement
+de la branche de développement principale <code>master</code>.</p>
+<p>Nous allons utiliser la commande 
+<a href="http://git-scm.com/docs/git-branch">git branch</a> pour créer une branche
+dans laquelle nous développerons notre nouvelle fonctionnalité.</p>
+<p>Si son développement abouti à un résultat satisfaisant, nous
+fusionnerons ses modifications à la branche principale. Sinon nous
+pourrons la supprimer sans que cela ai un impact sur la branche <code>master</code>.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">branch</span>
+<span class="nx">git</span> <span class="nx">branch</span> <span class="nx">experimental</span>
+<span class="nx">git</span> <span class="nx">branch</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">branch</span>
+<span class="o">*</span> <span class="nx">master</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">branch</span> <span class="nx">experimental</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">branch</span>
+  <span class="nx">experimental</span>
+<span class="o">*</span> <span class="nx">master</span>
+</pre></div>
+</code></pre>
+<p>La nouvelle branche <code>experimental</code> a bien été créée. Mais c&#39;est
+toujours la branche principale <code>master</code> qui est active. Il faut
+utiliser la commande <a href="http://git-scm.com/docs/git-checkout">git checkout</a>
+pour changer de branche.</p>
+</div><div class="pagination group"><a href="../../page/16/index.html" class="older">&#8592; Prev</a><a href="../../page/18/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

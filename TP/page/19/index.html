@@ -1,0 +1,93 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/18/index.html" class="older">&#8592; Prev</a><a href="../../page/20/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 19 : Visualiser les divergences</h1></div><div class="post-body markdown"><h2><a name="faire-diverger-les-branches" class="anchor" href="#faire-diverger-les-branches"><span class="header-link"></span></a>Faire diverger les branches</h2>
+<p>Nous allons réaliser des modifications dans nos deux branches
+pour les faire diverger.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="err">#</span> <span class="nx">Modification</span> <span class="nx">de</span> <span class="nx">la</span> <span class="nx">branche</span> <span class="nx">master</span>
+<span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">master</span>
+<span class="nx">echo</span> <span class="s2">&quot;# Doc du projet&quot;</span> <span class="o">&gt;</span> <span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
+<span class="nx">git</span> <span class="nx">add</span> <span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
+<span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;Initialisation de la doc&quot;</span>
+</pre></div>
+</code></pre>
+<pre><code><div class="highlight"><pre><span class="err">#</span> <span class="nx">Modification</span> <span class="nx">de</span> <span class="nx">la</span> <span class="nx">branche</span> <span class="nx">experimental</span>
+<span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">experimental</span>
+<span class="nx">cat</span> <span class="o">&gt;</span> <span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span> <span class="o">&lt;&lt;</span><span class="nx">EOF</span>
+<span class="err">#</span><span class="o">!</span><span class="err">/bin/bash</span>
+<span class="p">[</span> <span class="nx">$</span><span class="err">#</span> <span class="o">-</span><span class="nx">lt</span> <span class="mi">1</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">echo</span> <span class="s2">&quot;Personne à rechercher&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">exit</span> <span class="mi">1</span>
+<span class="nx">RESULT</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="nx">cat</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span> <span class="o">|</span> <span class="nx">grep</span> <span class="nx">$1</span><span class="p">)</span>
+<span class="p">[</span> <span class="s2">&quot;$RESULT&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">echo</span> <span class="s2">&quot;Pas de résultats&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">exit</span> <span class="mi">0</span>
+<span class="nx">echo</span> <span class="nx">$RESULT</span>
+<span class="nx">exit</span> <span class="mi">0</span>
+<span class="nx">EOF</span>
+<span class="nx">chmod</span> <span class="o">+</span><span class="nx">x</span> <span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span>
+<span class="nx">git</span> <span class="nx">add</span> <span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span>
+<span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;Ajout recherche développeur&quot;</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">master</span>
+<span class="nx">Switched</span> <span class="nx">to</span> <span class="nx">branch</span> <span class="s1">&#39;master&#39;</span>
+
+<span class="nx">$</span> <span class="nx">echo</span> <span class="s2">&quot;# Doc de hello.html&quot;</span> <span class="o">&gt;</span> <span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">add</span> <span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;Initialisation de la doc&quot;</span>
+<span class="p">[</span><span class="nx">master</span> <span class="nx">dd962f4</span><span class="p">]</span> <span class="nx">Initialisation</span> <span class="nx">de</span> <span class="nx">la</span> <span class="nx">doc</span>
+ <span class="mi">1</span> <span class="nx">file</span> <span class="nx">changed</span><span class="p">,</span> <span class="mi">1</span> <span class="nx">insertion</span><span class="p">(</span><span class="o">+</span><span class="p">)</span>
+ <span class="nx">create</span> <span class="nx">mode</span> <span class="mi">100644</span> <span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
+</pre></div>
+</code></pre>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">experimental</span>
+<span class="nx">Switched</span> <span class="nx">to</span> <span class="nx">branch</span> <span class="s1">&#39;experimental&#39;</span>
+
+<span class="nx">$</span> <span class="nx">cat</span> <span class="o">&gt;</span> <span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span> <span class="o">&lt;&lt;</span><span class="nx">EOF</span>
+<span class="o">&gt;</span> <span class="err">#</span><span class="o">!</span><span class="err">/bin/bash</span>
+<span class="o">&gt;</span> <span class="p">[</span> <span class="nx">$</span><span class="err">#</span> <span class="o">-</span><span class="nx">lt</span> <span class="mi">1</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">echo</span> <span class="s2">&quot;Personne à rechercher&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">exit</span> <span class="mi">1</span>
+<span class="o">&gt;</span> <span class="nx">RESULT</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="nx">cat</span> <span class="nx">MAINTAINERS</span><span class="p">.</span><span class="nx">txt</span> <span class="o">|</span> <span class="nx">grep</span> <span class="nx">$1</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="p">[</span> <span class="s2">&quot;$RESULT&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">echo</span> <span class="s2">&quot;Pas de résultats&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">exit</span> <span class="mi">0</span>
+<span class="o">&gt;</span> <span class="nx">echo</span> <span class="nx">$RESULT</span>
+<span class="o">&gt;</span> <span class="nx">exit</span> <span class="mi">0</span>
+<span class="o">&gt;</span> <span class="nx">EOF</span>
+
+<span class="nx">$</span> <span class="nx">chmod</span> <span class="o">+</span><span class="nx">x</span> <span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">add</span> <span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span>
+
+<span class="nx">$</span> <span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;Ajout recherche développeur&quot;</span>
+<span class="p">[</span><span class="nx">experimental</span> <span class="nx">d9e96f2</span><span class="p">]</span> <span class="nx">Ajout</span> <span class="nx">recherche</span> <span class="nx">d</span><span class="err">é</span><span class="nx">veloppeur</span>
+ <span class="mi">1</span> <span class="nx">file</span> <span class="nx">changed</span><span class="p">,</span> <span class="mi">6</span> <span class="nx">insertions</span><span class="p">(</span><span class="o">+</span><span class="p">)</span>
+ <span class="nx">create</span> <span class="nx">mode</span> <span class="mi">100755</span> <span class="nx">find</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">sh</span>
+</pre></div>
+</code></pre>
+<p>A ce stade nos deux branches divergent.</p>
+<h2><a name="visualiser-la-divergence" class="anchor" href="#visualiser-la-divergence"><span class="header-link"></span></a>Visualiser la divergence</h2>
+<p>Pour visualiser la divergence des branches, nous pouvons utiliser les
+options <code>--graph</code> et <code>--all</code> de la commande
+<a href="http://git-scm.com/docs/git-log">git log</a> pour présenter tous les
+commits de toutes les branches sous forme d&#39;arbre.</p>
+<p>Notre alias <code>git hist</code> utilise l&#39;option <code>--graph</code>, il nous suffit de
+lui passer l&#39;option <code>--all</code> pour afficher la divergence.</p>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">hist</span> <span class="o">--</span><span class="nx">all</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">hist</span> <span class="o">--</span><span class="nx">all</span>
+<span class="o">*</span> <span class="nx">d9e96f2</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Ajout</span> <span class="nx">recherche</span> <span class="nx">d</span><span class="err">é</span><span class="nx">veloppeur</span> <span class="p">(</span><span class="nx">HEAD</span><span class="p">,</span> <span class="nx">experimental</span><span class="p">)</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">|</span> <span class="o">*</span> <span class="nx">dd962f4</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Initialisation</span> <span class="nx">de</span> <span class="nx">la</span> <span class="nx">doc</span> <span class="p">(</span><span class="nx">master</span><span class="p">)</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">|</span><span class="err">/</span>
+<span class="o">*</span> <span class="nx">b0d2dd1</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Cr</span><span class="err">é</span><span class="nx">ation</span> <span class="nx">carnet</span> <span class="nx">d</span><span class="s1">&#39;adresses développeurs [Steven Enten]</span>
+<span class="s1">| * 8b88904 2015-03-21 | Création carnet d&#39;</span><span class="nx">adresses</span> <span class="nx">d</span><span class="err">é</span><span class="nx">veloppeurs</span> <span class="p">(</span><span class="nx">tag</span><span class="o">:</span> <span class="nx">v1</span><span class="p">)</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">|</span><span class="err">/</span>
+<span class="o">*</span> <span class="mi">5</span><span class="nx">a67ff5</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Ajout</span> <span class="nx">fonctionnalit</span><span class="err">é</span> <span class="nx">personnification</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">*</span> <span class="mi">421</span><span class="nx">a6a8</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Initialisation</span> <span class="nx">du</span> <span class="nx">projet</span> <span class="p">(</span><span class="nx">tag</span><span class="o">:</span> <span class="nx">v0</span><span class="p">)</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+</pre></div>
+</code></pre>
+<p>La divergeance peut également être observée avec <code>gitk</code> en utilisant la
+commande <code>gitk --all</code> (pour afficher toutes les branches).</p>
+<p><img src="http://i57.tinypic.com/sn2lxs.png" alt="Visualisation de la divergence avec Gitk"></p>
+<p><em>Note : nous avons deux verions du commit &quot;Création carnet d&#39;adresses
+développeurs&quot;. Le premier correspond à celui portant le tag <code>v1</code>. Le
+second correspond au commit ammendé.</em></p>
+</div><div class="pagination group"><a href="../../page/18/index.html" class="older">&#8592; Prev</a><a href="../../page/20/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link href="../../assets/styles/main.css" rel="stylesheet"><title>Git par la pratique</title></head><body><!-- <nav><h1 class="name"><a href="../../index.html">Git par la pratique</a></h1><div class="menu icon-menu"></div><ul class="nav-links"><li class="text-link"><a href="../1/index.html">1. Installation</a></li><li class="text-link"><a href="../3/index.html">2. Les bases</a></li><li class="text-link"><a href="../8/index.html">3. L'historique d'un dépôt</a></li><li class="text-link"><a href="../12/index.html">4. La correction d'erreurs</a></li><li class="text-link"><a href="../17/index.html">5. Les branches locales</a></li><li class="text-link"><a href="../23/index.html">6. Le travail collaboratif</a></li></ul><div class="social-media"><a href="https://github.com/enten/" class="icon-github"></a></div></nav> --><div class="content"><div class="pagination group"><a href="../../page/8/index.html" class="older">&#8592; Prev</a><a href="../../page/10/index.html" class="newer">Next &#8594</a></div><div class="post-head group"><h1 class="post-title">Itération 9 : Créer des alias</h1></div><div class="post-body markdown"><h2><a name="alias-communs" class="anchor" href="#alias-communs"><span class="header-link"></span></a>Alias communs</h2>
+<p>Il est possible de définir des alias aux commandes Git existantes. Pour
+cela il faut modifier le fichier de configuration niveau utilisateur.
+Ce fichier se trouve dans votre répertoire utilisateur sous le nom
+<code>.gitconfig</code>.</p>
+<p>Pour créer des alias il suffit de les déclarer sous un bloc <code>alias</code>
+dans le fichier de configuration de l&#39;utilisateur.</p>
+<p>Voici quelques alias couramment utilisés.</p>
+<pre><code><div class="highlight"><pre><span class="p">[</span><span class="nx">alias</span><span class="p">]</span>
+  <span class="nx">co</span> <span class="o">=</span> <span class="nx">checkout</span>
+  <span class="nx">ci</span> <span class="o">=</span> <span class="nx">commit</span>
+  <span class="nx">st</span> <span class="o">=</span> <span class="nx">status</span>
+  <span class="nx">br</span> <span class="o">=</span> <span class="nx">branch</span>
+</pre></div>
+</code></pre>
+<h1><a name="crer-un-alias-pour-lhistorique" class="anchor" href="#crer-un-alias-pour-lhistorique"><span class="header-link"></span></a>Créer un alias pour l&#39;historique</h1>
+<p>Nous allons reprendre notre commande d&#39;affichage personnalisé de
+l&#39;historique et l&#39;associer à l&#39;alias <code>hist</code>.</p>
+<pre><code><div class="highlight"><pre><span class="p">[</span><span class="nx">alias</span><span class="p">]</span>
+  <span class="nx">co</span> <span class="o">=</span> <span class="nx">checkout</span>
+  <span class="nx">ci</span> <span class="o">=</span> <span class="nx">commit</span>
+  <span class="nx">st</span> <span class="o">=</span> <span class="nx">status</span>
+  <span class="nx">br</span> <span class="o">=</span> <span class="nx">branch</span>
+  <span class="nx">hist</span> <span class="o">=</span> <span class="nx">log</span> <span class="o">--</span><span class="nx">pretty</span><span class="o">=</span><span class="nx">format</span><span class="o">:</span><span class="err">\</span><span class="s2">&quot;%h %ad | %s%d [%an]\&quot;</span> <span class="o">--</span><span class="nx">graph</span> <span class="o">--</span><span class="nx">date</span><span class="o">=</span><span class="kr">short</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Executer</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">git</span> <span class="nx">hist</span>
+</pre></div>
+</code></pre>
+<p><strong><em>Sortie standard</em></strong></p>
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">git</span> <span class="nx">hist</span>
+<span class="o">*</span> <span class="mi">8</span><span class="nx">b88904</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Cr</span><span class="err">é</span><span class="nx">ation</span> <span class="nx">carnet</span> <span class="nx">d</span><span class="err">&#39;</span><span class="nx">adresses</span> <span class="nx">d</span><span class="err">é</span><span class="nx">veloppeurs</span> <span class="p">(</span><span class="nx">HEAD</span><span class="p">,</span> <span class="nx">master</span><span class="p">)</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">*</span> <span class="mi">5</span><span class="nx">a67ff5</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Ajout</span> <span class="nx">fonctionnalit</span><span class="err">é</span> <span class="nx">personnification</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+<span class="o">*</span> <span class="mi">421</span><span class="nx">a6a8</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span> <span class="o">|</span> <span class="nx">Initialisation</span> <span class="nx">du</span> <span class="nx">projet</span> <span class="p">[</span><span class="nx">Steven</span> <span class="nx">Enten</span><span class="p">]</span>
+</pre></div>
+</code></pre>
+</div><div class="pagination group"><a href="../../page/8/index.html" class="older">&#8592; Prev</a><a href="../../page/10/index.html" class="newer">Next &#8594</a></div></div><div class="licence"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></a><br><p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Ce(tte) œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 non transposé</a></p></div><script src="../../assets/scripts/jquery.min.js" type="text/javascript"></script><script src="../../assets/scripts/main.js" type="text/javascript"></script></body></html>
